@@ -1,0 +1,15 @@
+{
+  "name": "node-sensex",
+  "version": "1.0.0",
+  "description": "A simple node server which fetch sensex data from various site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mohit",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "tinyreq": "^3.2.0"
+  }
+}
