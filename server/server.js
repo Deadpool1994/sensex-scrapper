@@ -18,7 +18,13 @@ const publicPath = path.join(__dirname, '../public');
 
 app.get('/', (req,res)=> {
         var stock_data = getObject("Arvind",req,res);
-        console.log(stock_data);
+    //    console.log(stock_data);
+});
+
+app.get('/:id', (req,res)=> {
+        var stock_name = req.params.id;
+        console.log(stock_name.toLowerCase());
+        var stock_data = getObject(stock_name.toLowerCase(),req,res);
 });
 
 var getObject = (stock_name,req,res) => {
@@ -38,15 +44,15 @@ var getStockValue = (stock_url,req,res)=>{
         reject(err);
       }
       $ = cheerio.load(body);
-      let stockData = $('.stockDtl');
-      let BSE_data = $(stockData).find('#Bse_Prc_tick strong').text();
-      let NSE_data = $(stockData).find('#Nse_Prc_tick_div strong').text();
-      let stock_data = {
-        'BSE_data': BSE_data,
-        'NSE_data': NSE_data
-      };
-      //console.log(stock_data);
-      res.send(stock_data);
+        let stockData = $('.stockDtl');
+        let BSE_data = $(stockData).find('#Bse_Prc_tick strong').text();
+        let NSE_data = $(stockData).find('#Nse_Prc_tick_div strong').text();
+        let stock_data = {
+          'BSE_data': BSE_data,
+          'NSE_data': NSE_data
+        };
+        //console.log(stock_data);
+        res.send(stock_data);
     });
 };
 

@@ -7,7 +7,7 @@ var startStockScrapping = ()=>{
   request("http://www.moneycontrol.com/india/stockpricequote/", function (err, body) {
     $ = cheerio.load(body);
     $('.pcq_tbl.MT10 td').each(function(){
-      let stock_name = $(this).text().trim();
+      let stock_name = $(this).text().trim().toLowerCase();
       let stock_url = $($(this).find('a')).attr('href');
 
       client.hmset(stock_name,[
