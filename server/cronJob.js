@@ -2,7 +2,7 @@ var CronJob = require('cron').CronJob;
 var scrapStock = require('./scrapStock.js');
 
 var startCronJob = ()=>{
-  new CronJob('0 1 * * *', () => {
+  new CronJob('* * * * *', () => {
     console.log("scrapping stock");
     scrapStock.startStockScrapping();
   }, () => {
