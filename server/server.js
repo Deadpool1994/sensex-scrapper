@@ -30,7 +30,7 @@ app.get('/:id', (req,res)=> {
 var getObject = (stock_name,req,res) => {
   client.hgetall(stock_name, function(err, obj){
     if(!obj){
-      console.log('cannot find stock');
+      res.send({'error':'cannot find stock'});
     }else{
       return getStockValue(obj.stock_url,req,res);
     }
@@ -41,7 +41,7 @@ var getStockValue = (stock_url,req,res)=>{
 
     request(stock_url, function (err, body) {
       if(err){
-        reject(err);
+        res.send(err);
       }
       $ = cheerio.load(body);
         let stockData = $('.stockDtl');
